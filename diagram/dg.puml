@@ -1,0 +1,64 @@
+
+' ' ========================= case 2
+
+' ' 請下列流程轉成 sequence diagram
+' ' 1. 正式執行服務前, ABC負責人應發會議通知給PMO 及相關同仁
+' ' 2. 執行後, IBM 寄出服務確認單, 應包括PMO
+' ' 3. 月底核帳, IBM 寄出服務確認單匯總給 PMO 及相關同仁進行確認
+
+
+' @startuml
+
+' participant ABC負責人
+' participant PMO
+' participant 相關同仁
+' participant IBM
+
+' ABC負責人 -> ABC負責人: 發會議通知
+' note over ABC負責人: 正式執行服務前
+' ABC負責人 -> PMO: 通知
+' ABC負責人 -> 相關同仁: 通知
+
+' activate IBM
+' IBM -> IBM: 寄出服務確認單
+' note over IBM: 執行後
+' IBM -> PMO: 包含PMO
+' ' deactivate IBM
+
+' ' activate IBM
+' IBM -> PMO: 寄出服務確認單匯總
+' note over IBM: 月底核帳
+' IBM -> 相關同仁: 確認單匯總
+' deactivate IBM
+
+' @enduml
+
+
+' ========================= case 1
+' 請將下列流程轉成 plantUML
+' 1. 正式執行服務前, ABC負責人應發會議通知給PMO 及相關同仁
+' 2. 執行後, IBM 寄出服務確認單, 應包括PMO
+' 3. 月底核帳, IBM 寄出服務確認單匯總給 PMO 及相關同仁進行確認
+
+@startuml
+
+start
+
+:ABC負責人發會議通知;
+note left: 正式執行服務前;
+
+:執行服務;
+note left: 執行後;
+
+:IBM寄出服務確認單;
+
+if (月底核帳?) then (yes)
+    :IBM寄出匯總給 PMO;
+    :確認;
+else (no)
+    :等待核帳;
+endif
+
+stop
+
+@enduml
